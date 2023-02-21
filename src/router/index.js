@@ -10,34 +10,12 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    },
-    {
-      path: '/brazil',
-      name: 'brazil',
-      component: () => import('../views/BrazilView.vue')
-    },
-    {
-      path: '/hawaii',
-      name: 'hawaii',
-      component: () => import('../views/HawaiiView.vue')
-    },
-    {
-      path: '/jamaica',
-      name: 'jamaica',
-      component: () => import('../views/JamaicaView.vue')
-    },
-    {
-      path: '/panama',
-      name: 'panama',
-      component: () => import('../views/PanamaView.vue')
+      path: '/destination/:id/:slug',
+      name: 'destination.show',
+      component: () => import('../views/DestinationShow.vue')
     }
-  ]
+  ],
+  // linkActiveClass: "vue-school-active-link" //default: "router-link-active"
 })
 
 export default router
