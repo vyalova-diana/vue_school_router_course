@@ -13,8 +13,17 @@ const router = createRouter({
       path: '/destination/:id/:slug',
       name: 'destination.show',
       component: () => import('../views/DestinationShow.vue'),
-      props: route => ({id: parseInt(route.params.id)})
-    }
+      props: route => ({...route.params, id: parseInt(route.params.id)}),
+      children: [
+        {
+          path: ':experienceSlug',
+          name: 'experience.show',
+          component: () => import('../views/ExperienceShow.vue'),
+          props: route => ({...route.params, id: parseInt(route.params.id)})
+        }
+      ]
+    },
+
   ],
   // linkActiveClass: "vue-school-active-link" //default: "router-link-active"
 })
