@@ -8,10 +8,25 @@ export default {
 <template>
   <TheNavigation/>
   <div class="container">
-    <router-view />
+    <router-view v-slot="{Component}">
+      <transition name="fade" mode="out-in">
+        <div :key="$route.path">
+          <component :is="Component" ></component>
+        </div>
+      </transition>
+    </router-view>
   </div>
 </template>
 
-<style scoped>
-
+<style >
+.fade-enter-active,
+.fade-leave-active
+{
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to
+{
+  opacity: 0;
+}
 </style>

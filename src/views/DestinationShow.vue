@@ -1,27 +1,32 @@
 <template>
-  <section class="destination">
-    <h1>{{destination.name}}</h1>
+  <div>
+    <section class="destination">
+      <h1>{{destination.name}}</h1>
+      <TheGoBack/>
       <div class="destination-details">
         <img :src="`/images/${destination.image}`" :alt="destination.name">
         <p>{{destination.description}}</p>
       </div>
-  </section>
-  <section class="experiences">
-    <h2>Top Experiences in {{destination.name}}</h2>
-    <div class="cards">
-      <router-link v-for="experience in destination.experiences" :key="experience.slug" :to="{name: 'experience.show', params: {experienceSlug: experience.slug}}">
-        <TheExperienceCard  :experience="experience"/>
-      </router-link>
-    </div>
-    <router-view/>
-  </section>
+    </section>
+    <section class="experiences">
+      <h2>Top Experiences in {{destination.name}}</h2>
+      <div class="cards">
+        <router-link v-for="experience in destination.experiences" :key="experience.slug" :to="{name: 'experience.show', params: {experienceSlug: experience.slug}}">
+          <TheExperienceCard  :experience="experience"/>
+        </router-link>
+      </div>
+      <router-view/>
+    </section>
+  </div>
+
 </template>
 
 <script>
 import sourceData from '@/data.json'
 import TheExperienceCard from "@/components/TheExperienceCard.vue";
+import TheGoBack from "@/components/TheGoBack.vue";
 export default {
-  components: {TheExperienceCard},
+  components: {TheExperienceCard, TheGoBack},
   props: {
     id: {type:Number,required:true}
   },
@@ -34,8 +39,6 @@ export default {
     }
   }
 }
-
-
 </script>
 
 <style scoped>
