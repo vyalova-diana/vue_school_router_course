@@ -3,7 +3,7 @@
     <h1>Not Found</h1>
     <p>
       We couldn't find that page. Try going
-      <router-link to="/">Home</router-link>
+      <TheAppLink to="/">Home</TheAppLink>
     </p>
   </div>
 </template>

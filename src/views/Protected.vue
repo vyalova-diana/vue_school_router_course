@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1>Greetings, {{username}}</h1>
-    <router-link :to="{name:'invoices'}">
+    <TheAppLink :to="{name:'invoices'}">
       <button class="btn">Invoices</button>
-    </router-link>
+    </TheAppLink>
     <button class="btn" @click="logout">Logout</button>
   </div>
 </template>
