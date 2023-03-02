@@ -40,10 +40,41 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: () => import('../views/NotFound.vue')
-    }
+    },
+    {
+      path: '/protected',
+      name: 'protected',
+      component: () => import('../views/Protected.vue'),
+      meta: {
+        requiresAuth : true
+      }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/Login.vue'),
+    },
+    {
+      path: '/invoices',
+      name: 'invoices',
+      component: () => import('../views/Invoices.vue'),
+      meta: {
+        requiresAuth : true
+      }
+    },
+
 
   ],
+  scrollBehavior(to,from,savedPosition) {
+    return savedPosition || new Promise((resolve) => {
+      setTimeout(() => resolve({top:0}),300) //to avoid conflict with transition
+    })
+  }
   // linkActiveClass: "vue-school-active-link" //default: "router-link-active"
 })
-
+router.beforeEach((to,from) => { //global navigation guard
+  if (to.meta.requiresAuth && !window.user) {
+    return {name:'login', query:{redirect: to.fullPath}}
+  }
+})
 export default router
